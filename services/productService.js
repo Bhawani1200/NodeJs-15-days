@@ -25,36 +25,80 @@
 //         price:1000,
 //     },
 // ];
-let products=[]
-const getAllProducts=()=>{
-    return products;
+import Product from '../model/ProductModel.js'
+const getAllProducts=async ()=>{
+    try {
+        return await Product.find();
+    } catch (error) {
+        throw error   
+    }
 }
 const getProductById=(id)=>{
-    return products.find((product)=>product.id === parseInt(id));  
+    return Product.find((product)=>product.id === parseInt(id));  
 };
-const createProduct=(data)=>{
-    const newProduct={
-        id:products.length+1,
-        name:data.name,
-        price:data.price,
+const getOneProduct=async (data)=>{
+    try {
+        return await Product.findOne(data);   
+    } catch (error) {
+     throw error
     }
-    products.push(newProduct)
-    return newProduct
 }
-const updateProduct=(id,data)=>{
-    const product=products.find((product)=>product.id===parseInt(id))
-    product.name=data.name;
-    product.price=data.price;
-    return product
+const createProduct=async (data)=>{
+
+    // const product=new Product(data)
+    // product.save()
+    try {
+        return await Product.create(data);
+        
+    } catch (error) {
+        throw error
+        
+    }
+    // const newProduct={
+    //     id:products.length+1,
+    //     name:data.name,
+    //     price:data.price,
+    // }
+    // products.push(newProduct)
+    // return newProduct
 }
-const deleteProduct=(id)=>{
-   products= products.filter((product)=>product.id!=parseInt(id))
-   return `product deleted :${id}`
+const updateProduct=async (id,data)=>{
+    try {
+      const product=await Product.findById(id)
+      if(!product)res.status(500).send('Product not found')
+        return await Product.findByIdAndUpdate(id,data)
+    return "updated product";
+    } catch (error) {
+      throw error
+    }
+}
+//Another method
+// const updateProduct=async (id,data)=>{
+//     try {
+//       const product=await Product.findById(id)
+//       if(!product)res.status(500).send('Product not found')
+//         return await Product.updateOne({
+//     _id:id,
+// },{
+//     $set:data
+// })
+    
+//     } catch (error) {
+//       throw error
+//     }
+// }
+const deleteProduct= async (id)=>{
+  try {
+    return await Product.findOneAndDelete(id)
+  } catch (error) {
+    throw error
+  }
 }
 export default{
      getAllProducts,
      getProductById,
      createProduct,
      updateProduct,
-     deleteProduct
+     deleteProduct,
+     getOneProduct
 }
