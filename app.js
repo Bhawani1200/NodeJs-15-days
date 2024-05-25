@@ -3,9 +3,11 @@ import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import bodyParser from 'body-parser';
 import connectDB from './database.js';
+import logger from './middleware/logger.js';
 const app=express();
 connectDB();
 app.use(bodyParser.json())
+app.use(logger)
 const PORT=process.env.PORT||5000;
 app.use("/api/products",productRoutes)
 app.use("/api/users",userRoutes)
