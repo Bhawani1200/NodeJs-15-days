@@ -27,8 +27,8 @@ const loginUser=async (data)=>{
         const emailExists=await User.findOne({email:data.email})
         if(!emailExists) throw new Error('Email not found')
        const isMatched=await bcrypt.compare(data.password,emailExists.password)
-        if(isMatched) throw new Error('password not matched')
-            return {status:okay}
+        if(!isMatched) throw new Error('password not matched')
+            return {status:"okay"}
     } catch (error) {
         throw error
     }

@@ -7,12 +7,12 @@ const getAllProducts=async (req,res)=>{
     res.status(500).send(error.message)
   }
 }
-const getProductById=(req,res)=>{
-    const id=req.params.id
-  const product=productService.getProductById(id)
-  if(!product) res.status(404).send('product not found')
-  res.json(product)
- }
+// const getProductById=(req,res)=>{
+//     const id=req.params.id
+//   const product=productService.getProductById(id)
+//   if(!product) res.status(404).send('product not found')
+//   res.json(product)
+//  }
  const getOneProduct=async(req,res)=>{
   try {
     const data=req.body
@@ -59,14 +59,13 @@ const deleteProduct=async (req,res)=>{
     const product =await productService.deleteProduct(id)
     if(!product) res.status(404).send('product not found')
     res.send(`product deleted :${id}`)
-    
   } catch (error) {
     res.status(500).send(error.message)
   }
      } 
 export default {
     getAllProducts,
-    getProductById,
+    // getProductById,
     createProduct,
     updateProduct,
     deleteProduct,

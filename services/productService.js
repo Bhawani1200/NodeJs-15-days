@@ -33,9 +33,9 @@ const getAllProducts=async ()=>{
         throw error   
     }
 }
-const getProductById=(id)=>{
-    return Product.find((product)=>product.id === parseInt(id));  
-};
+// const getProductById=(id)=>{
+//     return Product.find((product)=>product.id === parseInt(id));  
+// };
 const getOneProduct=async (data)=>{
     try {
         return await Product.findOne(data);   
@@ -96,7 +96,7 @@ const deleteProduct= async (id)=>{
 }
 export default{
      getAllProducts,
-     getProductById,
+    //  getProductById,
      createProduct,
      updateProduct,
      deleteProduct,
