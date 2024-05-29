@@ -1,10 +1,17 @@
-const TOKEN=12345;
+import jwt from 'jsonwebtoken'
 const auth=(req,res,next)=>{
-    const {authorization}=req.headers
-    if(authorization&&authorization===`Bearer ${TOKEN}`){
-        next()
+    // const token=req.headers["authorization"];
+    const token=req.cookies["token"]
+    if(token){
+        jwt.verify(token.split(' ')[1],process.env.JWT_SECRET,(error,data)=>{
+            if(error){
+                return res.status(403).send('Forbidden')
+            }
+            req.user=data;
+            next();
+        })
     }else{
-        res.status(404).send('Unauthorized token')
+        res.status(401).send('Unauthorized')
     }
 }
 export default auth;

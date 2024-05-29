@@ -16,6 +16,7 @@ const registerUser=async (data)=>{
             id:createUser._id,
             email:createUser.email,
             name:createUser.name,
+            password:createUser.password,
             createdAt:createUser.createdAt,
         }
     } catch (error) {
@@ -33,7 +34,6 @@ const loginUser=async (data)=>{
         throw error
     }
 }
-
 export default{
     registerUser,
     loginUser
