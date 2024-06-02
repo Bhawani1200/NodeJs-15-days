@@ -16,6 +16,7 @@ const registerUser=async (data)=>{
             id:createUser._id,
             email:createUser.email,
             name:createUser.name,
+            roles:createUser.roles,
             password:createUser.password,
             createdAt:createUser.createdAt,
         }

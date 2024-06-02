@@ -7,12 +7,33 @@ const getAllProducts=async (req,res)=>{
     res.status(500).send(error.message)
   }
 }
-// const getProductById=(req,res)=>{
-//     const id=req.params.id
-//   const product=productService.getProductById(id)
-//   if(!product) res.status(404).send('product not found')
-//   res.json(product)
-//  }
+const getCategories=async (req,res)=>{
+  try {
+    const categories=await productService.getCategories()
+     res.json(categories)
+  } catch (error) {
+    res.status(500).send(error.message)
+  }
+}
+const getBrands=async (req,res)=>{
+
+  try {
+    const brands=await productService.getBrands()
+     res.json(brands)
+  } catch (error) {
+    res.status(500).send(error.message)
+  }
+}
+const getProductById=(req,res)=>{
+  try {
+    const id=req.params.id
+  const product=productService.getProductById(id)
+  if(!product) res.status(404).send('product not found')
+  res.json(product)
+  } catch (error) {
+    res.status(500).send(error.message)
+  }
+ }
  const getOneProduct=async(req,res)=>{
   try {
     const data=req.body
@@ -65,9 +86,11 @@ const deleteProduct=async (req,res)=>{
      } 
 export default {
     getAllProducts,
-    // getProductById,
+    getProductById,
     createProduct,
     updateProduct,
     deleteProduct,
-    getOneProduct
+    getOneProduct,
+    getCategories,
+    getBrands
 }

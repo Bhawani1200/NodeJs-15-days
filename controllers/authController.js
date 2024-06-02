@@ -1,7 +1,13 @@
+
 import authService from "../services/authService.js"
 import jwt from 'jsonwebtoken'
+import verifyPassword from "../utils/passwordVerification.js"
 const registerUser=async(req,res)=>{
     try {
+  const {email,name,password,confirmPassword}=req.body
+    if(!email||!name||!password) 
+        return res.status(422).send("Required params are missing")
+        verifyPassword(password,confirmPassword)
     const user=await authService.registerUser(req.body)
     res.json(user)
     } catch (error) {
@@ -11,8 +17,9 @@ const registerUser=async(req,res)=>{
 const loginUser =async(req,res)=>{
     try {
     const user=await authService.loginUser(req.body)
+    // console.log(user)
     const token=jwt.sign(
-        {id:user._id,email:user.email},
+        {id:user._id,email:user.email, roles:user.roles},
         process.env.JWT_SECRET,
         {
         expiresIn:"1h",

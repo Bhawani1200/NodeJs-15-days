@@ -2,6 +2,7 @@ import EMAIL_REGEX from '../constants/regex.js'
 import User from '../model/userModel.js'
 import bcrypt from 'bcrypt'
 const registerUser=async (data)=>{
+    const{name,email,password,confirmPassword,roles}=data;
     try {
         const emailExists=await User.findOne({email:data.email})
         if(emailExists) throw new Error('Email already exists')
@@ -17,6 +18,7 @@ const registerUser=async (data)=>{
             email:createUser.email,
             password:createUser.password,
             name:createUser.name,
+            roles:createUser.roles,
             createdAt:createUser.createdAt,
         }
     } catch (error) {
@@ -25,11 +27,11 @@ const registerUser=async (data)=>{
 }
 const loginUser=async (data)=>{
     try {
-        const emailExists=await User.findOne({email:data.email})
-        if(!emailExists) throw new Error('Email not found')
-       const isMatched=await bcrypt.compare(data.password,emailExists.password)
+        const existingUser=await User.findOne({email:data.email})
+        if(!existingUser) throw new Error('Email not found')
+       const isMatched=await bcrypt.compare(data.password,existingUser.password)
         if(!isMatched) throw new Error('password not matched')
-          return emailExists;
+          return existingUser;
     } catch (error) {
         throw error
     }

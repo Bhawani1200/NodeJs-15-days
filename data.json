@@ -1,0 +1,93 @@
+[
+    {
+        "name": "iPhone 13",
+        "brand": "Apple",
+        "category": "Smartphones",
+        "price": 799
+    },
+    {
+        "name": "MacBook Air (M1, 2020)",
+        "brand": "Apple",
+        "category": "Laptops",
+        "price": 999
+    },
+    {
+        "name": "Galaxy S21",
+        "brand": "Samsung",
+        "category": "Smartphones",
+        "price": 799
+    },
+    {
+        "name": "PlayStation 5",
+        "brand": "Sony",
+        "category": "Gaming Consoles",
+        "price": 499
+    },
+    {
+        "name": "Xbox Series X",
+        "brand": "Microsoft",
+        "category": "Gaming Consoles",
+        "price": 499
+    },
+    {
+        "name": "Dell XPS 13",
+        "brand": "Dell",
+        "category": "Laptops",
+        "price": 999
+    },
+    {
+        
+        "name": "Sony WH-1000XM4",
+        "brand": "Sony",
+        "category": "Headphones",
+        "price": 349
+    },
+    {
+        "name": "Nintendo Switch",
+        "brand": "Nintendo",
+        "category": "Gaming Consoles",
+        "price": 299
+    },
+    {
+        "name": "Kindle Paperwhite",
+        "brand": "Amazon",
+        "category": "E-readers",
+        "price": 129
+    },
+    {
+        "name": "Bose QuietComfort 35 II",
+        "brand": "Bose",
+        "category": "Headphones",
+        "price": 299
+    },
+    {
+        "name": "Fitbit Charge 5",
+        "brand": "Fitbit",
+        "category": "Fitness Trackers",
+        "price": 179
+    },
+    {
+        "name": "Samsung Galaxy Tab S7",
+        "brand": "Samsung",
+        "category": "Tablets",
+        "price": 649
+    },
+    {
+        "name": "GoPro HERO9 Black",
+        "brand": "GoPro",
+        "category": "Action Cameras",
+        "price": 399
+    },
+    {
+        "name": "Apple Watch Series 7",
+        "brand": "Apple",
+        "category": "Smartwatches",
+        "price": 399
+    },
+    {
+        "name": "Logitech MX Master 3",
+        "brand": "Logitech",
+        "category": "Computer Accessories",
+        "price": 99
+    }
+]

@@ -15,6 +15,10 @@ password:{
     type:String,
     required:true
 },
+roles:{
+  type:[String],
+  default:["USER"]
+},
 createdAt:{
     type:Date,
     default:Date.now
