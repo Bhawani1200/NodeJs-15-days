@@ -12,6 +12,6 @@ router.post("/",productController.createProduct)
 router.put("/:id",productController.updateProduct)
 router.delete("/:id",productController.deleteProduct)
 // Middleware routes
-//  router.post('/',auth,productController.createProduct)
-//  router.delete('/:id',auth,roles("ADMIN"),productController.deleteProduct)
+ router.post('/',auth,productController.createProduct)
+ router.delete('/:id',auth,roles("ADMIN"),productController.deleteProduct)
 export default router;
