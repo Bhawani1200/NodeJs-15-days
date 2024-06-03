@@ -88,7 +88,8 @@ const createProduct=async (data)=>{
     // const product=new Product(data)
     // product.save()
     try {
-        return await Product.create(data);    
+        return await Product.create(data);  
+        
     } catch (error) {
         throw error
         

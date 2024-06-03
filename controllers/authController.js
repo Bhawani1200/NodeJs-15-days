@@ -2,6 +2,7 @@
 import authService from "../services/authService.js"
 import jwt from 'jsonwebtoken'
 import verifyPassword from "../utils/passwordVerification.js"
+import createToken from "../helper/authHelper.js"
 const registerUser=async(req,res)=>{
     try {
   const {email,name,password,confirmPassword}=req.body
@@ -14,21 +15,31 @@ const registerUser=async(req,res)=>{
         res.status(404).send(error.message)
     }
 }
-const loginUser =async(req,res)=>{
-    try {
-    const user=await authService.loginUser(req.body)
+// const loginUser =async(req,res)=>{
+//     try {
+//     const user=await authService.loginUser(req.body)
     // console.log(user)
-    const token=jwt.sign(
-        {id:user._id,email:user.email, roles:user.roles},
-        process.env.JWT_SECRET,
-        {
-        expiresIn:"1h",
-    }
-)
-res.cookie("token",token,{httpOnly:false})
-    res.json({token})
+    // const token=jwt.sign(
+    //     {id:user._id,email:user.email, roles:user.roles},
+    //     process.env.JWT_SECRET,
+    //     {
+    //     expiresIn:"1h",
+//     }
+// )
+// res.cookie("token",token,{httpOnly:false})
+//     res.json({token})
+//     } catch (error) {
+//         res.status(404).send(error.message)
+//     }
+// }
+const loginUser=async(req,res)=>{
+    try {
+        const user = await authService.loginUser(req.body)
+        const token=createToken(user)
+        res.cookie("token",token,{httpOnly:false})
+            res.json({token})
     } catch (error) {
-        res.status(404).send(error.message)
+        res.status(500).send(error.message)
     }
 }
 export default{
