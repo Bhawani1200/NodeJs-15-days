@@ -22,6 +22,10 @@ roles:{
 createdAt:{
     type:Date,
     default:Date.now
-}
+},
+otp:{
+    type:Number,
+
+},
 })
 export default mongoose.model("User",userSchema)

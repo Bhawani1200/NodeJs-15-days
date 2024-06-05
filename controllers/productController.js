@@ -1,68 +1,67 @@
-import productService from "../services/productService.js"
-const getAllProducts=async (req,res)=>{
+import productService from "../services/productService.js";
+const getAllProducts = async (req, res) => {
   try {
-    const products=await productService.getAllProducts()
-     res.json(products)
+    const products = await productService.getAllProducts();
+    res.json(products);
   } catch (error) {
-    res.status(500).send(error.message)
+    res.status(500).send(error.message);
   }
-}
-const getCategories=async (req,res)=>{
+};
+const getCategories = async (req, res) => {
   try {
-    const categories=await productService.getCategories()
-     res.json(categories)
+    const categories = await productService.getCategories();
+    res.json(categories);
   } catch (error) {
-    res.status(500).send(error.message)
+    res.status(500).send(error.message);
   }
-}
-const getBrands=async (req,res)=>{
+};
+const getBrands = async (req, res) => {
+  try {
+    const brands = await productService.getBrands();
+    res.json(brands);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+const getProductById = (req, res) => {
+  try {
+    const id = req.params.id;
+    const product = productService.getProductById(id);
+    if (!product) res.status(404).send("product not found");
+    res.json(product);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+const getOneProduct = async (req, res) => {
+  try {
+    const data = req.body;
+    const product = await productService.getOneProduct(data);
+    // if(!product) res.status(404).send('product not found')
+    res.json(product);
+  } catch (error) {
+    throw error;
+  }
+};
+const createProduct = (req, res) => {
+  try {
+    const product = productService.createProduct(req.body);
+    res.status(201).json(product);
+    return product;
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+const updateProduct = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const product = await productService.updateProduct(id, req.body);
 
-  try {
-    const brands=await productService.getBrands()
-     res.json(brands)
+    res.json(product);
   } catch (error) {
-    res.status(500).send(error.message)
+    res.status(500).send(error.message);
   }
-}
-const getProductById=(req,res)=>{
-  try {
-    const id=req.params.id
-  const product=productService.getProductById(id)
-  if(!product) res.status(404).send('product not found')
-  res.json(product)
-  } catch (error) {
-    res.status(500).send(error.message)
-  }
- }
- const getOneProduct=async(req,res)=>{
-  try {
-    const data=req.body
-  const product=await productService.getOneProduct(data)
-  // if(!product) res.status(404).send('product not found')
-   res.json(product)
-  } catch (error) { 
-throw error
-  }
- }
- const createProduct=(req,res)=>{
-  try {
-    const product= productService.createProduct(req.body)
-    res.status(201).json(product)
-    return product
-  } catch (error) {
-    res.status(500).send(error.message)
-  }
-}
-const updateProduct=async (req,res)=>{
-   try {
-    const id=req.params.id
-    const product=await productService.updateProduct(id, req.body)
-  
-      res.json(product);
-   } catch (error) {
-    res.status(500).send(error.message)
-   }
-}
+};
 //Another method
 // const updateProduct=async(req,res)=>{
 //   try {
@@ -74,23 +73,23 @@ const updateProduct=async (req,res)=>{
 //     res.status(500).send(error.message)
 //   }
 // }
-const deleteProduct=async (req,res)=>{
+const deleteProduct = async (req, res) => {
   try {
-    const id=req.params.id
-    const product =await productService.deleteProduct(id)
-    if(!product) res.status(404).send('product not found')
-    res.send(`product deleted :${id}`)
+    const id = req.params.id;
+    const product = await productService.deleteProduct(id);
+    if (!product) res.status(404).send("product not found");
+    res.send(`product deleted :${id}`);
   } catch (error) {
-    res.status(500).send(error.message)
+    res.status(500).send(error.message);
   }
-     } 
+};
 export default {
-    getAllProducts,
-    getProductById,
-    createProduct,
-    updateProduct,
-    deleteProduct,
-    getOneProduct,
-    getCategories,
-    getBrands
-}
+  getAllProducts,
+  getProductById,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+  getOneProduct,
+  getCategories,
+  getBrands,
+};
