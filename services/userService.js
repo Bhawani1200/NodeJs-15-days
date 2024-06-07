@@ -65,5 +65,5 @@ export default {
   registerUser,
   loginUser,
   forgetPassword,
-  verifyOtp,
+
 };
