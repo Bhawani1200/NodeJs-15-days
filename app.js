@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors'
 import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import authRoutes from './routes/authRoutes.js'
@@ -14,6 +15,9 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(logger)
 app.use(cookieParser())
+app.use(cors({
+    origin:"http://localhost:3000"
+}))
 app.set('view engine','ejs')
 const PORT=process.env.PORT||5000;
 app.use("/api/products",productRoutes)
