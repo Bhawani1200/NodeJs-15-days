@@ -36,7 +36,12 @@ const loginUser = async (req, res) => {
     const user = await authService.loginUser(req.body);
     const token = createToken(user);
     res.cookie("token", token, { httpOnly: false });
-    res.json({ token });
+    res.json({
+      id:user._id,
+      name:user.name,
+      email:user.email,
+      roles:user.roles,
+    });
   } catch (error) {
     res.status(500).send(error.message);
   }
